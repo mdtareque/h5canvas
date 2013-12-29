@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Title </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <link rel="stylesheet" href="s/style.css"> -->
+    <style>
+    #myCanvas {border: 1px solid black;}
+    </style>
+
+<script type="text/javascript">
+
+var G = {
+    stopped: false,
+    width: 600.0,
+    height: 400.0,
+    defaultTimeOut: 30,
+};
+var canvas; 
+var surface;
+
+
+function draw() {
+  if(canvas.getContext == null) {
+    return; 
+  }
+   
+  var context = surface;
+  //ctx.clearRect(0, 0, width, height); 
+  //env.draw(ctx, scaleFactor); 
+  //blobColl.draw(ctx, scaleFactor); 
+  context.beginPath();
+      context.arc(200, 200, 50, 0, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = '#003300';
+      context.stroke();
+}
+
+
+function timeout() {
+  draw(); 
+  //update(); 
+      
+  if(G.stopped == false) {
+    setTimeout('timeout()', G.defaultTimeOut); 
+  }
+}
+
+function init(){
+  console.log("In init method");  
+  canvas = document.getElementById('myCanvas');
+  surface = canvas.getContext('2d');
+  if(canvas.getContext == null) {
+    alert("You need latest version of browser for this to work, sorry."); 
+    return; 
+  }
+  timeout();
+}
+
+    </script>
+</head>
+<body onload="init()">
+    <h1>Canvas show piece</h1>
+
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+
+    <!-- <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
+    <script src="j/js.js"></script> -->
+</body>
+<html>
